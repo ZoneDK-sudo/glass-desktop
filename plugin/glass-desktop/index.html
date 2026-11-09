@@ -1,0 +1,146 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover,user-scalable=no">
+  <meta http-equiv="Content-Security-Policy" content="default-src 'self'; script-src 'self'; style-src 'self'; img-src 'self' data:; connect-src wss://*.ts.net ws://127.0.0.1:8765 ws://localhost:8765; object-src 'none'; frame-src 'none'; worker-src 'none'; base-uri 'none'; form-action 'none'">
+  <title>Glass Desktop</title>
+  <link rel="stylesheet" href="./style.css">
+</head>
+<body>
+  <main>
+    <header>
+      <h1>GLASS<span>DESKTOP</span></h1>
+      <span id="state" class="state">connecting…</span>
+    </header>
+
+    <section class="connect">
+      <label class="grow">PC address
+        <input id="host" type="text" inputmode="url" autocapitalize="off" autocorrect="off" spellcheck="false" placeholder="mypc.tail1234.ts.net">
+      </label>
+      <label class="pin">PIN
+        <input id="pin" type="text" inputmode="numeric" maxlength="8" autocomplete="off" placeholder="if set">
+      </label>
+      <button id="connect" type="button" class="primary">Connect</button>
+    </section>
+    <p id="status" class="status">Not connected.</p>
+    <div class="screenrow">
+      <label>PC screen to show
+        <select id="screen" disabled><option value="">Connect to list the screens</option></select>
+      </label>
+      <label>PC resolution while streaming
+        <select id="res">
+          <option value="native">Normal (no change)</option>
+          <option value="1920x1080">1920×1080</option>
+          <option value="1600x900">1600×900</option>
+          <option value="1280x720">1280×720 (bigger text)</option>
+          <option value="1024x576">1024×576 (biggest)</option>
+        </select>
+      </label>
+      <label>PC monitors while streaming
+        <select id="dark">
+          <option value="on">Switch them off</option>
+          <option value="off">Leave them on</option>
+        </select>
+      </label>
+    </div>
+
+    <section class="stats">
+      <div><b id="fps">–</b><small>fps</small></div>
+      <div><b id="kbs">–</b><small>KB/s</small></div>
+      <div><b id="ms">–</b><small>ms / frame</small></div>
+      <button id="audio" type="button">Sound on</button>
+    </section>
+
+    <section id="control" class="control">
+      <div id="pad" class="pad" aria-label="Trackpad">
+        <span>Trackpad</span>
+        <small>1 finger move · tap click · 2-finger tap right-click · 2 fingers scroll · hold to drag</small>
+      </div>
+      <div class="mouse">
+        <button type="button" data-click="left">Left</button>
+        <button type="button" data-click="right">Right</button>
+        <button type="button" data-double>Double</button>
+        <button type="button" id="hold">Hold</button>
+      </div>
+
+      <input id="kbd" class="kbd" type="text" autocapitalize="off" autocorrect="off" autocomplete="off" spellcheck="false" enterkeyhint="send" placeholder="Tap here to type on the PC">
+      <div class="keys">
+        <button type="button" data-key="esc">Esc</button>
+        <button type="button" data-key="tab">Tab</button>
+        <button type="button" data-key="backspace">⌫</button>
+        <button type="button" data-key="enter">Enter</button>
+        <button type="button" data-key="left">←</button>
+        <button type="button" data-key="up">↑</button>
+        <button type="button" data-key="down">↓</button>
+        <button type="button" data-key="right">→</button>
+        <button type="button" data-key="win">Win</button>
+        <button type="button" data-key="alt+tab">Alt+Tab</button>
+        <button type="button" data-key="ctrl+c">Copy</button>
+        <button type="button" data-key="ctrl+v">Paste</button>
+        <button type="button" data-key="ctrl+z">Undo</button>
+        <button type="button" data-key="ctrl+a">All</button>
+        <button type="button" data-key="win+d">Desktop</button>
+        <button type="button" data-key="alt+f4">Close</button>
+      </div>
+    </section>
+
+    <details class="settings">
+      <summary>Picture &amp; trackpad settings</summary>
+      <div class="grid">
+        <label>Picture size
+          <select id="size">
+            <option value="600x350">Full (600×350)</option>
+            <option value="400x234">Large (400×234)</option>
+            <option value="300x176">Medium (300×176)</option>
+            <option value="200x118">Small (200×118)</option>
+          </select>
+        </label>
+        <label>Zoom around mouse
+          <select id="zoom">
+            <option value="1">Whole screen</option>
+            <option value="2">2×</option>
+            <option value="3">3×</option>
+            <option value="4">4×</option>
+            <option value="6">6×</option>
+          </select>
+        </label>
+        <label>Style
+          <select id="style">
+            <option value="text">Text (sharp, for reading)</option>
+            <option value="shaded">Shaded (pictures, video)</option>
+          </select>
+        </label>
+        <label>Invert
+          <select id="invert">
+            <option value="auto">Auto (light pages flip)</option>
+            <option value="on">Always</option>
+            <option value="off">Never</option>
+          </select>
+        </label>
+        <label>Shades (Shaded style)
+          <select id="levels">
+            <option value="4">4</option>
+            <option value="2">2 – fastest</option>
+          </select>
+        </label>
+        <label>Trackpad speed <output id="sensOut">1.5</output>
+          <input id="sens" type="range" min="0.5" max="4" step="0.25" value="1.5">
+        </label>
+        <label>Brightness <output id="brightnessOut">-30</output>
+          <input id="brightness" type="range" min="-120" max="60" step="5" value="-30">
+        </label>
+        <label>Contrast <output id="contrastOut">1.2</output>
+          <input id="contrast" type="range" min="0.6" max="2.4" step="0.1" value="1.2">
+        </label>
+      </div>
+    </details>
+
+    <section class="help">
+      <p><b>Glasses button:</b> press to cycle zoom · hold to pause / resume.</p>
+      <p class="hint">On the PC run <code>py glass_stream.py --one-screen</code>; it prints the PIN. Keep this screen open while connected.</p>
+    </section>
+  </main>
+  <script type="module" src="./plugin.js"></script>
+</body>
+</html>

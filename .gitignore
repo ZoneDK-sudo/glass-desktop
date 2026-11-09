@@ -1,0 +1,15 @@
+# created on the PC at run time — never commit
+pc/glass_pin.txt
+pc/screens_backup.json
+pc/glass_stream.log
+pc/glass_stream.pid
+__pycache__/
+*.pyc
+
+# MemoMind's Web SDK is copied in by plugin/get-sdk.ps1 (not ours to redistribute)
+plugin/glass-desktop/vendor/*
+!plugin/glass-desktop/vendor/.gitkeep
+
+# packaged builds
+*.mmpkg
+*.zip

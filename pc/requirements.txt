@@ -1,0 +1,5 @@
+mss>=9
+numpy>=1.24
+Pillow>=10
+websockets>=12
+soundcard>=0.4.6
