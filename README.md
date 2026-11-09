@@ -1,5 +1,7 @@
 # Glass Desktop
 
+![Glass Desktop: PC screen, sound and input streamed over Tailscale to a phone and on to MemoMind One glasses](docs/overview.svg)
+
 Your Windows PC on **MemoMind One** smart glasses — screen, sound, mouse and
 keyboard — from anywhere over Tailscale.
 
